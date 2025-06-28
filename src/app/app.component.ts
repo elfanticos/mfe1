@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -8,9 +8,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'mfe1';
-  
+
   // Dati hardcoded per la tabella
   users = [
     { id: 1, nome: 'Mario', cognome: 'Rossi', email: 'mario.rossi@email.it', eta: 28, citta: 'Roma' },
@@ -22,4 +22,10 @@ export class AppComponent {
     { id: 7, nome: 'Roberto', cognome: 'Viola', email: 'roberto.viola@email.it', eta: 38, citta: 'Palermo' },
     { id: 8, nome: 'Elena', cognome: 'Rosa', email: 'elena.rosa@email.it', eta: 33, citta: 'Genova' }
   ];
+
+  ngOnInit(): void {
+    window.addEventListener('user-data', (event: any) => {
+      console.log('Ricevuto:', event.detail);
+    });
+  }
 }
